@@ -5,6 +5,7 @@ import com.Ecommerce.model.Category;
 import com.Ecommerce.model.Product;
 import com.Ecommerce.repository.CategoryRepository;
 import com.Ecommerce.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
     private CategoryRepository categoryRepository;
     private ProductRepository productRepository;

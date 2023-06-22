@@ -8,6 +8,7 @@ import com.Ecommerce.model.User;
 import com.Ecommerce.repository.CartItemRepository;
 import com.Ecommerce.repository.ProductRepository;
 import com.Ecommerce.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CartItemService {
     private CartItemRepository cartItemRepository;
     private ProductRepository productRepository;
