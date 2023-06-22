@@ -1,7 +1,7 @@
 package com.Ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -19,11 +19,16 @@ public class Product {
     @Column
     private Double price;
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference("productList")
     @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "product")
     List<CartItem> cartItems;
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<OrderItem> orderItems;
+//    @OneToMany(mappedBy = "product")
+//    @JsonManagedReference
+//    List<WishlistItem> wishlistItems;
 
     public Product() {
     }
@@ -76,9 +81,33 @@ public class Product {
         this.cartItems = cartItems;
     }
 
+    public List<OrderItem> getOrderItems() {
+        if (this.orderItems == null) {
+            this.orderItems = new ArrayList<>();
+        }
+
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    //    public List<WishlistItem> getWishlistItems() {
+//        if (this.wishlistItems == null) {
+//            this.wishlistItems = new ArrayList<>();
+//        }
+//
+//        return wishlistItems;
+//    }
+//
+//    public void setWishlistItems(List<WishlistItem> wishlistItems) {
+//        this.wishlistItems = wishlistItems;
+//    }
+
     @Override
     public String toString() {
-        return "Product: " + "id = " + id + "; name = " + name + "; description = " + description + "; price = " + price + "; category = " + category + "; cartItems = " + cartItems + ".";
+        return "Product: " + "id = " + id + "; name = " + name + "; description = " + description + "; price = " + price + "; category = " + category + "; cartItems = " + cartItems + "; orderItems = " + orderItems + ".";
     }
 
 }

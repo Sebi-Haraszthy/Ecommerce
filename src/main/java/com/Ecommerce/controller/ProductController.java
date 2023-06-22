@@ -35,8 +35,8 @@ public class ProductController {
         return productService.getAllProductsByCategory(categoryId);
     }
 
-    @PutMapping("/update/{productId}")
-    public Product updateProduct(@RequestBody Product product, @PathVariable Long productId) {
-        return productService.
+    @PutMapping("/update/{product_id}")
+    public Product updateProduct(@RequestBody AddProductDTO addProductDTO, @PathVariable Long productId) {
+        return productService.updateProduct(addProductDTO, productId);
     }
 }

@@ -12,8 +12,13 @@ public class User {
     private Long id;
     @Column
     private String name;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     List<CartItem> cartItems;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Wishlist wishlist;
 
     public User() {
     }
@@ -42,8 +47,16 @@ public class User {
         this.cartItems = cartItems;
     }
 
+//    public Wishlist getWishlist() {
+//        return wishlist;
+//    }
+//
+//    public void setWishlist(Wishlist wishlist) {
+//        this.wishlist = wishlist;
+//    }
+
     @Override
     public String toString() {
-        return "User: " + "id = " + id + "; name = " + name + "; cartItems = " + cartItems + ".";
+        return "User: " + "id = " + id + "; name = " + name + "; cartItems = " + cartItems + "; wishlist = " + ".";
     }
 }
