@@ -31,12 +31,17 @@ public class ProductController {
     }
 
     @GetMapping("/{category_id}")
-    public List<Product> getAllProductsByCategory(@PathVariable Long categoryId) {
-        return productService.getAllProductsByCategory(categoryId);
+    public List<Product> getAllProductsByCategory(@PathVariable Long category_id) {
+        return productService.getAllProductsByCategory(category_id);
     }
 
     @PutMapping("/update/{product_id}")
-    public Product updateProduct(@RequestBody AddProductDTO addProductDTO, @PathVariable Long productId) {
-        return productService.updateProduct(addProductDTO, productId);
+    public Product updateProduct(@RequestBody AddProductDTO addProductDTO, @PathVariable Long product_id) {
+        return productService.updateProduct(addProductDTO, product_id);
+    }
+
+    @DeleteMapping("/delete/{product_id}")
+    public void deleteProductFromCategory(@PathVariable Long product_id) {
+        productService.deleteProduct(product_id);
     }
 }

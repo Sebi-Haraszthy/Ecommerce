@@ -41,4 +41,9 @@ public class CategoryService {
 
         return categoryRepository.save(foundCategory);
     }
+
+    public void deleteCategory(Long category_id) {
+        Category foundCategory = categoryRepository.findById(category_id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "The order you want to delete does not exist!"));
+        categoryRepository.deleteCategoryById(foundCategory);
+    }
 }

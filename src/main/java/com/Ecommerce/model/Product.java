@@ -26,9 +26,9 @@ public class Product {
     List<CartItem> cartItems;
     @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<OrderItem> orderItems;
-//    @OneToMany(mappedBy = "product")
-//    @JsonManagedReference
-//    List<WishlistItem> wishlistItems;
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference
+    List<WishlistItem> wishlistItems;
 
     public Product() {
     }
@@ -93,21 +93,20 @@ public class Product {
         this.orderItems = orderItems;
     }
 
-    //    public List<WishlistItem> getWishlistItems() {
-//        if (this.wishlistItems == null) {
-//            this.wishlistItems = new ArrayList<>();
-//        }
-//
-//        return wishlistItems;
-//    }
-//
-//    public void setWishlistItems(List<WishlistItem> wishlistItems) {
-//        this.wishlistItems = wishlistItems;
-//    }
+    public List<WishlistItem> getWishlistItems() {
+        if (this.wishlistItems == null) {
+            this.wishlistItems = new ArrayList<>();
+        }
+
+        return wishlistItems;
+    }
+
+    public void setWishlistItems(List<WishlistItem> wishlistItems) {
+        this.wishlistItems = wishlistItems;
+    }
 
     @Override
     public String toString() {
-        return "Product: " + "id = " + id + "; name = " + name + "; description = " + description + "; price = " + price + "; category = " + category + "; cartItems = " + cartItems + "; orderItems = " + orderItems + ".";
+        return "Product: " + "id = " + id + "; name = " + name + "; description = " + description + "; price = " + price + "; category = " + category + "; cartItems = " + cartItems + "; orderItems = " + orderItems + "; wishlistItems = " + wishlistItems + ".";
     }
-
 }

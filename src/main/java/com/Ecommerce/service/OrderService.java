@@ -46,8 +46,20 @@ public class OrderService {
         }
 
         Order savedOrder = orderRepository.save(newOrder);
-        cartItemService.deleteAllUserCartItems(foundUser);
+        cartItemService.deleteAllUserCartItems(user_id);
 
         return savedOrder;
+    }
+
+    public List<Order> getAllOrdersByUser(Long user_id) {
+        User foundUser = userRepository.findById(user_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
+
+        return orderRepository.findAllByUserOrderByCreatedDateDesc(foundUser);
+    }
+
+    public Order getOrderDetails(Long order_id) {
+        Order foundOrder = orderRepository.findById(order_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
+
+        return foundOrder;
     }
 }

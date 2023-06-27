@@ -64,7 +64,8 @@ public class CartItemService {
         cartItemRepository.delete(cartItem);
     }
 
-    public void deleteAllUserCartItems(User user) {
-        cartItemRepository.deleteAllByUser(user);
+    public void deleteAllUserCartItems(Long user_id) {
+        User foundUser = userRepository.findById(user_id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
+        cartItemRepository.deleteByUser(foundUser);
     }
 }
