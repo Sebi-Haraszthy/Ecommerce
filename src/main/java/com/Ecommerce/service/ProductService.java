@@ -25,15 +25,16 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product addProduct(AddProductDTO addProductDTO, Long categoryId) {
+    public void addProduct(AddProductDTO addProductDTO, Long categoryId) {
         Product productToBeSaved = new Product();
         Category foundCategory = categoryRepository.findById(categoryId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The category you want to update does not exist!"));
         productToBeSaved.setCategory(foundCategory);
         productToBeSaved.setDescription(addProductDTO.getDescription());
         productToBeSaved.setName(addProductDTO.getName());
         productToBeSaved.setPrice(addProductDTO.getPrice());
+        categoryRepository.save(foundCategory);
 
-        return productRepository.save(productToBeSaved);
+//        return productRepository.save(productToBeSaved);
     }
 
     public List<Product> getAllProducts() {

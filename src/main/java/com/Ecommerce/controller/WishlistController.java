@@ -24,7 +24,7 @@ public class WishlistController {
         return wishlistItemService.addItemToWishlist(addAndDeleteToWishlistDTO);
     }
 
-    @GetMapping("/{user_id")
+    @GetMapping("/{user_id}")
     public List<WishlistItem> getAllWishlistItem(@PathVariable Long user_id) {
         return wishlistItemService.getAllWishlistItems(user_id);
     }
