@@ -25,13 +25,14 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void addProduct(AddProductDTO addProductDTO, Long categoryId) {
+    public void addProduct(AddProductDTO addProductDTO, Long category_id) {
         Product productToBeSaved = new Product();
-        Category foundCategory = categoryRepository.findById(categoryId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The category you want to update does not exist!"));
-        productToBeSaved.setCategory(foundCategory);
+        Category foundCategory = categoryRepository.findById(category_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The category you want to update does not exist!"));
+//        productToBeSaved.setCategory(foundCategory);
         productToBeSaved.setDescription(addProductDTO.getDescription());
         productToBeSaved.setName(addProductDTO.getName());
         productToBeSaved.setPrice(addProductDTO.getPrice());
+        foundCategory.getProductList().add(productToBeSaved);
         categoryRepository.save(foundCategory);
 
 //        return productRepository.save(productToBeSaved);
@@ -49,7 +50,7 @@ public class ProductService {
 
     public Product updateProduct(AddProductDTO addProductDTO, Long product_id) {
         Product foundProduct = productRepository.findById(product_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The product you want to update does not exist!"));
-        Category foundCategory = categoryRepository.findById(addProductDTO.getCategoryId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The category does not exist!"));
+        Category foundCategory = categoryRepository.findById(addProductDTO.getCategory_id()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The category does not exist!"));
         foundProduct.setName(addProductDTO.getName());
         foundProduct.setDescription(addProductDTO.getDescription());
         foundProduct.setPrice(addProductDTO.getPrice());

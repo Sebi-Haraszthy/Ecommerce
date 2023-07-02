@@ -20,8 +20,8 @@ public class ProductController {
 
     @PostMapping("/create")
     public void addProduct(@RequestBody AddProductDTO addProductDTO) {
-        Long categoryId = addProductDTO.getCategoryId();
-        productService.addProduct(addProductDTO, categoryId);
+        Long category_id = addProductDTO.getCategory_id();
+        productService.addProduct(addProductDTO, category_id);
     }
 
     @GetMapping("/")

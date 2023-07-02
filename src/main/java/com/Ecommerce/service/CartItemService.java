@@ -32,8 +32,8 @@ public class CartItemService {
     }
 
     public CartItem addToCart(AddToCartDTO addToCartDTO) {
-        Product foundProduct = productRepository.findById(addToCartDTO.getProductId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found!"));
-        User foundUser = userRepository.findById(addToCartDTO.getUserId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
+        Product foundProduct = productRepository.findById(addToCartDTO.getProduct_id()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found!"));
+        User foundUser = userRepository.findById(addToCartDTO.getUser_id()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
         CartItem cartItem = new CartItem();
         cartItem.setProduct(foundProduct);
         cartItem.setUser(foundUser);

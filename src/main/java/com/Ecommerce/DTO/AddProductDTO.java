@@ -4,13 +4,13 @@ public class AddProductDTO {
     private String name;
     private Double price;
     private String description;
-    private Long categoryId;
+    private Long category_id;
 
-    public AddProductDTO(String name, Double price, String description, Long categoryId) {
+    public AddProductDTO(String name, Double price, String description, Long category_id) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.categoryId = categoryId;
+        this.category_id = category_id;
     }
 
     public String getName() {
@@ -37,11 +37,11 @@ public class AddProductDTO {
         this.description = description;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getCategory_id() {
+        return category_id;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory_id(Long category_id) {
+        this.category_id = category_id;
     }
 }

@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue
     private Long id;
     @Column
-    private String name;
+    private String username;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonBackReference
     private Wishlist wishlist;
@@ -28,12 +28,12 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public Wishlist getWishlist() {
@@ -70,6 +70,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User: " + "id = " + id + "; name = " + name + "; wishlist = " + wishlist + "; orders = " + orders + "; cartItems = " + cartItems + ".";
+        return "User: " + "id = " + id + "; username = " + username + "; wishlist = " + wishlist + "; orders = " + orders + "; cartItems = " + cartItems + ".";
     }
 }
