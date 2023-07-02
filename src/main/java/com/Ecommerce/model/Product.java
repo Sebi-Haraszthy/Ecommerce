@@ -1,6 +1,7 @@
 package com.Ecommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -19,7 +20,7 @@ public class Product {
     @Column
     private Double price;
     @ManyToOne
-    @JsonBackReference("productList")
+    @JsonIgnore
     @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "product")

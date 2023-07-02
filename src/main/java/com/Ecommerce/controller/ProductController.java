@@ -19,9 +19,10 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public void addProduct(@RequestBody AddProductDTO addProductDTO) {
+    public Product addProduct(@RequestBody AddProductDTO addProductDTO) {
         Long category_id = addProductDTO.getCategory_id();
-        productService.addProduct(addProductDTO, category_id);
+
+        return productService.addProduct(addProductDTO, category_id);
     }
 
     @GetMapping("/")
