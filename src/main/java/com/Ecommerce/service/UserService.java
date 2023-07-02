@@ -14,16 +14,4 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-//    public User register(RegisterDTO newUser) {
-//        Optional<User> foundUser = userRepository.findUserByUsername(newUser.getUsername());
-//
-//        if(foundUser.isPresent()) {
-//            throw new ResponseStatusException(HttpStatus.CREATED, "User already exists!");
-//        }
-//
-//        User user = new User();
-//        user.setName(newUser.getUsername());
-//
-//    }
 }

@@ -58,8 +58,6 @@ public class OrderService {
     }
 
     public Order getOrderDetails(Long order_id) {
-        Order foundOrder = orderRepository.findById(order_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
-
-        return foundOrder;
+        return orderRepository.findById(order_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
     }
 }
